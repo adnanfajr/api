@@ -2,11 +2,6 @@
 
 function scrap($page) {
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    //curl_setopt($ch, CURLOPT_REFERER, 'http://bem.its.ac.id/id/blog-id/');
 
     if($page==='' ||$page==='1') {
         curl_setopt($ch, CURLOPT_URL, 'http://bem.its.ac.id/id/blog-id/');
@@ -18,24 +13,25 @@ function scrap($page) {
     }
     else {
         curl_setopt($ch, CURLOPT_URL, 'http://bem.its.ac.id/id/blog-id/');
+        $halaman = 1;
     }
+
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
     // html
     $data = curl_exec($ch);
+    curl_close($ch);
 
     // array untuk output
     $output = array();
 
-    // Gagal ngecURL
+    // gagal cURL
     if (!$data) {
         $output['status'] = "error";
         $output['pesan'] = "website sedang offline";
-
-        curl_close($ch);
     }
-    // Sukses ngecURL
+    // sukses cURL
     else {
-        curl_close($ch);
         // include plugin
         require 'plugin/simple_html_dom.php';
 
@@ -89,7 +85,7 @@ function scrap($page) {
 // menentukan parameter
 $page = (empty($_GET['page']) ? '' : $_GET['page']);
 
-// menjalankan proses curl dan mengolah data html.y nanti output.y dalam bentuk array
+// menjalankan proses curl
 $result = scrap($page);
 
 // convert jadi json
