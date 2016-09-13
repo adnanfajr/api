@@ -55,8 +55,11 @@ function scrap($url) {
             $author = $auth->find('a', 0)->innertext;
             $date = $auth->find('span[class=date]', 0)->find('time', 0)->innertext;
 
-            foreach($bahan->find('div[class=post-wrapper-content]', 0)->find('div[class=the_content_wrapper]', 0)->find('p') as $content)
-                $content->innertext;
+            foreach($bahan->find('div[class=post-wrapper-content]', 0)->find('div[class=the_content_wrapper]', 0)->find('p') as $e)
+                $content[] = $e->innertext;
+
+            // hapus kolom komentar
+            unset($content[count($content)-1]);
 
             $output['status'] = 'success';
             $output['data'][] = array(
