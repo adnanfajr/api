@@ -1,10 +1,3 @@
-/**
- * Created by PhpStorm.
- * User: Eden
- * Date: 9/12/2016
- * Time: 6:33 PM
- */
-
 // HTTP HEADER
 curl_setopt($ch, CURLOPT_HTTPHEADER, array());
 
@@ -22,7 +15,4 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, '');
 // user agent
 curl_setopt($ch, CURLOPT_USERAGENT, '');
     curl_setopt($ch, CURLOPT_USERAGENT, 'Googlebot/2.1 (http://www.googlebot.com/bot.html)');
-
-
-DEMO
 
