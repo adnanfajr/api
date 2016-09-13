@@ -6,6 +6,7 @@ function scrap($url) {
     }
     else {
         $ch = curl_init();
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36');
         curl_setopt($ch, CURLOPT_URL, 'http://bem.its.ac.id/id/'.$url.'/');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
